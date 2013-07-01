@@ -20,11 +20,16 @@ What is the value of the first triangle number to have over five hundred divisor
 require ("../helper.php");
 $h = new primes();
 for($i=500;;$i++){
-	$factors = $h->primeFactors(($i*($i+1))/2);
-	$product = 1;
-	foreach($factors as $factor){
-		$product *= ($factor+1);
-	} 
+	if($i & 1 == 1) {
+	
+		$factorsn = $h->divisors2($i);
+		$factorsnp1 = $h->divisors2(($i+1)/2);
+	}else{
+	
+		$factorsn = $h->divisors2($i/2);
+		$factorsnp1 = $h->divisors2(($i+1));
+	}
+		$product =  $factorsn * $factorsnp1;
 	if($product > 500){
 		break;
 	}

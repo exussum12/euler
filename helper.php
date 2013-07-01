@@ -13,7 +13,7 @@ class primes {
 				$this->primeList[]= (int)  gmp_strval(gmp_nextprime($this->primeList[$i]));	
 			}
 		}
-		 return $this->primeList[$number-1];
+		return $this->primeList[$number-1];
 
 	}
 
@@ -29,5 +29,25 @@ class primes {
 			}
 		}
 		return $return;
+	}
+
+	public function divisors ($number) {
+		$factors = $this->primeFactors($number);
+		$total = 1;
+		foreach($factors as $factor){
+			$total *= ($factor+1);
+		}
+		return $total;
+	}
+	public function divisors2($number) {
+		$dividers = 0;
+		$stop = sqrt($number);
+		for($i = 1; $i < $stop; $i++) {
+			if($number%$i == 0) {
+				$dividers += 2;
+			}
+		}
+		if(is_int ($stop)) $dividers--;
+		return $dividers;
 	}
 }
