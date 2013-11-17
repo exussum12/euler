@@ -50,4 +50,26 @@ class primes {
 		if(is_int ($stop)) $dividers--;
 		return $dividers;
 	}
+	public function getDivisors($number){
+		$dividers = array();
+		if($number < 1){
+			return $dividers;
+		}
+		if($number == 1){
+			$dividers[] = 1;
+			return $dividers;
+		}
+		$stop = sqrt($number);
+		$check = is_int($stop);
+		for($i = 1; $i < $stop; $i++) {
+			if($number%$i == 0) {
+				$dividers[] = $i;
+				if(!$check) {
+					$dividers[] = $number / $i;
+				}
+			}
+			
+		}
+		return $dividers;
+	}
 }
