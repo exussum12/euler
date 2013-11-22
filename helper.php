@@ -60,16 +60,19 @@ class primes {
 			return $dividers;
 		}
 		$stop = sqrt($number);
-		$check = is_int($stop);
-		for($i = 1; $i < $stop; $i++) {
+		for($i = 1; $i <= $stop; $i++) {
 			if($number%$i == 0) {
 				$dividers[] = $i;
-				if(!$check) {
+				if(!($i == $stop)) {
 					$dividers[] = $number / $i;
 				}
 			}
 			
 		}
 		return $dividers;
+	}
+
+	public function getSumOfDivisors($number) {
+		return array_sum($this->getDivisors($number)) - $number;
 	}
 }
