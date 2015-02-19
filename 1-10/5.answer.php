@@ -7,24 +7,17 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 
 function multipleBelow($max =20){
-	$found= array() ;
-	for($i=3;$i<20;$i+=2){
-		foreach($found as $num => $j){
-			if($i % $j == 0 ){
-				if($j != 5){
-					unset($found[$num]);
-				}else{
-					continue 2;
-				}
-			}
+	$found = array();
+	$sqrt = sqrt($max);
+	$prime = 0;
+	while (($prime = (int) gmp_strval(gmp_nextprime($prime))) < $max) {
+		if ($prime < $sqrt) {
+			$found[]= pow($prime, floor(log($max, $prime)));
+		} else {
+			$found[] = $prime;
 		}
-		$found[] = $i;
 	}
-	$found[]= pow(2, floor(log($max, 2)));
-	$product =1;
-	foreach ($found as $number){
-		$product *= $number;
-	}
-	return $product;
+
+	return array_product($found);
 }
 echo "Answer: " . multipleBelow() ;
