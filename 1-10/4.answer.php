@@ -10,7 +10,7 @@ $temp="";
 for($i=0;$i<1000;$i++){
 	for($j=0;$j<1000;$j++){
 		$temp = (string) ($i*$j);
-		if (strrev($temp) === $temp && (int)$temp > $largest)
+		if ((int)$temp > $largest && strrev($temp) === $temp )
 			$largest = (int) $temp;
 		
 	}
